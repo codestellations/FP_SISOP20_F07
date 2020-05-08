@@ -9,7 +9,7 @@ char temp[512];
 char str[100][100];
 
 int main(int argc, char *argv[]) {
-  int i, j=0;
+  int i, j=0, srt=0;
 
   if(argc < 2){
 		printf(1, "sort: not enough arguments\n");
@@ -40,6 +40,7 @@ int main(int argc, char *argv[]) {
           strcpy(temp, str[j]);
           strcpy(str[j], str[j+1]);
           strcpy(str[j+1], temp);
+          srt++;
         }
       }
     }
@@ -58,6 +59,32 @@ int main(int argc, char *argv[]) {
         }
         exit();
       }
+
+      else if(strcmp(argv[1], "-u") == 0){
+        char piv[512];
+        strcpy(piv, str[0]);
+        printf(1, "%s\n", str[0]);
+
+        for(i = 1; i<line; i++){
+          if(strcmp(piv, str[i]) != 0){
+            strcpy(piv, str[i]);
+            printf(1, "%s\n", str[i]);
+          }
+        }
+        exit();
+      }
+
+      else if(strcmp(argv[1], "-c") == 0){
+        if(srt == 0){
+          printf(1, "data sudah terurut\n");
+        }
+        else{
+          for(i = 0; i<line; i++){
+            printf(1, "%s\n", str[i]);
+          }
+        }
+      }
+
       else{
         printf(1, "sort: argumen salah\n");
         exit();
